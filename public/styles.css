@@ -1,0 +1,24 @@
+@media (max-width: 767px) {
+  .mobile-sidebar {
+    width: min(18rem, 85vw);
+  }
+}
+
+@media (min-width: 640px) {
+  .drawer-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .drawer-field-wide {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #app-sidebar,
+  #sidebar-backdrop,
+  #record-drawer,
+  #drawer-backdrop {
+    transition-duration: 0.01ms !important;
+  }
+}

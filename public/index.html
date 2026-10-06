@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestión de Farmacia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="/styles.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-slate-950 font-sans text-slate-100">
+  <main id="auth-screen" class="grid min-h-screen bg-slate-100 text-slate-800 lg:grid-cols-2">
+    <section class="relative flex min-h-screen items-center justify-center px-5 py-10 sm:px-10 lg:px-16">
+      <div class="w-full max-w-md">
+        <div class="mb-10 flex items-center gap-3">
+          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-600 text-xl text-white shadow-lg shadow-indigo-600/25">
+            <i class="fa-solid fa-pills"></i>
+          </div>
+          <p class="text-lg font-extrabold tracking-tight text-slate-900">FARMACIA</p>
+        </div>
+        <div class="mb-7">
+          <h1 id="auth-heading" class="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">Iniciar sesión</h1>
+        </div>
+        <form id="login-form" class="space-y-5">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Correo electrónico
+            <span class="relative mt-2 block">
+              <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              <input name="email" type="email" autocomplete="email" maxlength="150" placeholder="nombre@correo.com" required class="w-full rounded-xl border border-slate-200 bg-white py-3 pl-11 pr-4 text-sm font-medium text-slate-900 outline-none transition placeholder:font-normal placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10">
+            </span>
+          </label>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Contraseña
+            <span class="relative mt-2 block">
+              <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              <input id="login-password" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="72" placeholder="Ingresa tu contraseña" required class="w-full rounded-xl border border-slate-200 bg-white py-3 pl-11 pr-12 text-sm font-medium text-slate-900 outline-none transition placeholder:font-normal placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10">
+              <button type="button" data-password-toggle="login-password" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 transition hover:text-indigo-600" aria-label="Mostrar contraseña">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </span>
+        </label>
+          <button class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-600/20 transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20">Iniciar sesión</button>
+        </form>
+        <form id="register-form" class="hidden space-y-4">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Nombre
+            <input name="nombre" type="text" autocomplete="name" minlength="2" maxlength="120" placeholder="Tu nombre completo" required class="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm font-medium text-slate-900 outline-none transition placeholder:font-normal placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10">
+          </label>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Correo electrónico
+            <input name="email" type="email" autocomplete="email" maxlength="150" placeholder="nombre@correo.com" required class="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm font-medium text-slate-900 outline-none transition placeholder:font-normal placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10">
+          </label>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Contraseña
+            <span class="relative mt-2 block">
+              <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              <input id="register-password" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="72" placeholder="Mínimo 8 caracteres" required class="w-full rounded-xl border border-slate-200 bg-white py-3 pl-11 pr-12 text-sm font-medium text-slate-900 outline-none transition placeholder:font-normal placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10">
+              <button type="button" data-password-toggle="register-password" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 transition hover:text-indigo-600" aria-label="Mostrar contraseña">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </span>
+          </label>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">Tipo de usuario
+            <select name="rol" required class="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm font-medium text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10">
+              <option value="usuario" selected>Usuario</option>
+              <option value="moderador">Moderador</option>
+              <option value="admin">Administrador</option>
+            </select>
+          </label>
+          <button class="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-600/20 transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500/20">Crear cuenta</button>
+        </form>
+        <p id="auth-error" role="alert" class="mt-4 hidden rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700"></p>
+        <p class="mt-7 text-center text-sm text-slate-500">
+          <span id="auth-switch-prompt">¿No tienes cuenta?</span>
+          <button id="toggle-auth" type="button" class="ml-1 font-bold text-indigo-600 hover:text-indigo-700">Regístrate</button>
+        </p>
+      </div>
+    </section>
+    <aside class="relative hidden items-center justify-center overflow-hidden bg-[#151c55] text-white lg:flex lg:min-h-screen">
+      <div class="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,.16)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.16)_1px,transparent_1px)] [background-size:56px_56px]"></div>
+      <div class="pointer-events-none absolute -right-24 top-1/4 h-80 w-80 rounded-full bg-indigo-400/20 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-24 -left-20 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl"></div>
+      <div class="relative flex h-64 w-64 items-center justify-center rounded-[4rem] border border-white/10 bg-white/[0.04] shadow-2xl shadow-indigo-950/40">
+        <span class="absolute h-48 w-48 rounded-full border border-white/10"></span>
+        <span class="absolute h-36 w-36 rounded-full bg-indigo-400/10 blur-xl"></span>
+        <span class="relative flex h-28 w-28 items-center justify-center rounded-[2rem] border border-white/15 bg-white/10 text-5xl text-indigo-100 shadow-xl backdrop-blur-sm">
+          <i class="fa-solid fa-pills"></i>
+        </span>
+      </div>
+    </section>
+  </main>
+
+  <div id="app-screen" class="hidden min-h-screen">
+    <button id="sidebar-backdrop" type="button" class="fixed inset-0 z-30 hidden bg-slate-950/70 opacity-0 transition-opacity duration-300 md:hidden" aria-label="Cerrar menú"></button>
+    <aside id="app-sidebar" class="mobile-sidebar fixed inset-y-0 left-0 z-40 flex -translate-x-full flex-col border-r border-slate-800 bg-[#0f172a] transition-transform duration-300 ease-out md:sticky md:top-0 md:h-screen md:w-64 md:translate-x-0">
+      <div class="flex items-center gap-3 border-b border-white/5 px-5 py-5">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-lg shadow-indigo-950/40"><i class="fa-solid fa-pills"></i></span>
+        <div>
+          <p class="text-sm font-extrabold tracking-wide text-white">FARMACIA</p>
+          <p class="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">Panel de gestión</p>
+        </div>
+      </div>
+      <p class="px-5 pb-2 pt-6 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">Menú principal</p>
+      <nav id="navigation" class="flex-1 space-y-1 overflow-y-auto px-3 pb-4" aria-label="Menú principal"></nav>
+      <div class="border-t border-white/5 p-4">
+        <div class="flex items-center gap-3 rounded-xl bg-white/[0.04] p-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-500/15 text-sm font-bold text-indigo-300"><i class="fa-regular fa-user"></i></span>
+          <div class="min-w-0">
+            <p id="sidebar-user-name" class="truncate text-xs font-semibold text-slate-200"></p>
+            <p id="sidebar-user-role" class="mt-0.5 text-[10px] capitalize text-slate-500"></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <section class="min-w-0 flex-1">
+      <header class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 bg-slate-900 px-4 py-4 sm:px-5 md:px-8">
+        <div class="flex min-w-0 items-center gap-3">
+          <button id="sidebar-toggle" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 text-slate-300 transition hover:bg-slate-800 hover:text-white md:hidden" aria-label="Abrir menú" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="min-w-0">
+            <h1 id="page-title" class="break-words text-xl font-bold">Farmacia</h1>
+            <p id="user-badge" class="break-words text-sm text-slate-400"></p>
+          </div>
+        </div>
+        <button id="logout-button" class="rounded-lg border border-slate-700 px-4 py-2 text-sm hover:bg-slate-800">
+          <i class="fa-solid fa-right-from-bracket mr-2"></i>Cerrar sesión
+        </button>
+      </header>
+      <main class="p-4 md:p-8">
+        <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+          <p id="section-description" class="text-sm text-slate-400"></p>
+          <button id="create-button" class="hidden rounded-lg bg-indigo-600 px-4 py-2.5 font-medium hover:bg-indigo-500">
+            <i class="fa-solid fa-plus mr-2"></i>Nuevo registro
+          </button>
+        </div>
+        <p id="app-error" role="alert" class="mb-4 hidden rounded-lg border border-rose-700 bg-rose-950 p-3 text-sm text-rose-200"></p>
+        <div id="records-container" class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900">
+          <table class="w-full min-w-max text-left text-sm">
+            <thead id="table-head" class="bg-slate-800 text-xs uppercase tracking-wide text-slate-300"></thead>
+            <tbody id="table-body" class="divide-y divide-slate-800"></tbody>
+          </table>
+        </div>
+      </main>
+    </section>
+  </div>
+
+  <div id="record-overlay" class="fixed inset-0 z-50 hidden" aria-hidden="true">
+    <button id="drawer-backdrop" type="button" class="absolute inset-0 bg-slate-950/70 opacity-0 transition-opacity duration-300" aria-label="Cerrar formulario"></button>
+    <section id="record-drawer" role="dialog" aria-modal="true" aria-labelledby="dialog-title" tabindex="-1" class="absolute inset-y-0 right-0 flex w-full max-w-lg translate-x-full flex-col border-l border-slate-700 bg-slate-900 text-slate-100 shadow-2xl transition-transform duration-300 ease-out">
+      <form id="record-form" class="flex min-h-0 flex-1 flex-col">
+        <div class="flex items-center justify-between gap-3 border-b border-slate-800 px-4 py-3 sm:px-5 sm:py-4">
+          <div class="min-w-0 flex-1">
+            <h2 id="dialog-title" class="break-words text-base font-bold sm:text-lg"></h2>
+          </div>
+          <button id="dialog-close" type="button" aria-label="Cerrar" class="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-800 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+        </div>
+        <div class="min-h-0 flex-1 overflow-y-auto px-4 py-4 sm:px-5 sm:py-5">
+          <div id="form-fields" class="drawer-fields grid gap-3"></div>
+          <div id="delete-confirmation" class="hidden rounded-xl border border-rose-500/20 bg-rose-500/[0.06] p-4">
+            <span class="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-rose-500/10 text-rose-300"><i class="fa-solid fa-triangle-exclamation"></i></span>
+            <h3 class="text-base font-semibold text-white">¿Eliminar este registro?</h3>
+            <p id="delete-record-name" class="mt-2 text-sm font-medium text-rose-200"></p>
+            <p class="mt-2 text-xs text-slate-400">No se puede deshacer.</p>
+            <p class="mt-2 text-xs text-slate-500">ID: <code id="delete-record-id" class="font-mono text-slate-300"></code></p>
+          </div>
+          <p id="dialog-error" role="alert" class="mt-4 hidden rounded-lg border border-rose-700 bg-rose-950 p-3 text-sm text-rose-200"></p>
+        </div>
+        <div class="flex justify-end gap-2 border-t border-slate-800 px-4 py-3 sm:gap-3 sm:px-5">
+          <button id="dialog-cancel" type="button" class="shrink-0 rounded-lg border border-slate-700 px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 sm:px-4">Cancelar</button>
+          <button id="dialog-save" class="shrink-0 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500 sm:px-5">Guardar</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
