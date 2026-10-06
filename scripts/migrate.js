@@ -17,7 +17,9 @@ async function migrate() {
     });
   }
 
-  const [appliedRows] = await db.sequelize.query('SELECT name FROM SequelizeMeta');
+  const appliedRows = await db.sequelize.query('SELECT name FROM "SequelizeMeta"', {
+    type: db.Sequelize.QueryTypes.SELECT
+  });
   const applied = new Set(appliedRows.map(row => row.name));
   const files = (await fs.readdir(migrationsDirectory))
     .filter(file => file.endsWith('.js'))
